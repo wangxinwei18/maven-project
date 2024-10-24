@@ -37,7 +37,7 @@ pipeline {
                                 def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
                                 bat """
                                 winscp.com /command ^
-                                  "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\"$SSH_KEY\\"" ^
+                                  "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\$sshKeyPath\\"" ^
                                   "put $warFilePath /var/lib/tomcat9/webapps/" ^
                                   "exit"
                                 """
