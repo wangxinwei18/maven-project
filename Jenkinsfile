@@ -32,7 +32,7 @@ pipeline {
                         script {
                             // Define variables for staging server
                             def warFilePath = "${env.WORKSPACE}\\webapp\\target\\webapp.war"
-                            def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
+                            def sshKeyPath = 'C:\\Users\\wangx\\tomcat\\tomcat-demo.pem'
                             def remoteUser = 'ec2-user'
                             def remoteHost = params.tomcat_dev
 
@@ -53,7 +53,7 @@ pipeline {
                         script {
                             // Define variables for production server
                             def warFilePath = "${env.WORKSPACE}\\webapp\\target\\webapp.war"
-                            def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
+                            def sshKeyPath = 'C:\\Users\\wangx\\tomcat\\tomcat-demo.pem'
                             def remoteUser = 'ec2-user'
                             def remoteHost = params.tomcat_prod
 
