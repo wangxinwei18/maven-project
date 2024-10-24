@@ -35,6 +35,9 @@ pipeline {
                             script {
                                 def warFilePath = "${env.WORKSPACE}\\target\\*.war"
                                 def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
+                               // Debugging output
+                               echo "WAR File Path: ${warFilePath}"
+                               echo "SSH Key Path: ${sshKeyPath}"
                                 bat """
                                 winscp.com /command ^
                                   "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\$sshKeyPath\\"" ^
