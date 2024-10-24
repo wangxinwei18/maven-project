@@ -34,6 +34,7 @@ pipeline {
                         withCredentials([file(credentialsId: 'tomcat-demo.pem', variable: 'SSH_KEY')]) {
                             script {
                                 def warFilePath = "${env.WORKSPACE}\\target\\*.war"
+                                def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
                                 bat """
                                 winscp.com /command ^
                                   "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\"$SSH_KEY\\"" ^
@@ -50,9 +51,10 @@ pipeline {
                         withCredentials([file(credentialsId: 'tomcat-demo.pem', variable: 'SSH_KEY')]) {
                             script {
                                 def warFilePath = "${env.WORKSPACE}\\target\\*.war"
+                                def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
                                 bat """
                                 winscp.com /command ^
-                                  "open sftp://ec2-user@${params.tomcat_prod}/ -privatekey=\\"$SSH_KEY\\"" ^
+                                  "open sftp://ec2-user@${params.tomcat_prod}/ -privatekey=\\"$sshKeyPath\\"" ^
                                   "put $warFilePath /var/lib/tomcat9/webapps/" ^
                                   "exit"
                                 """
