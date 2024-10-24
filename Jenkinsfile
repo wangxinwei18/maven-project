@@ -39,7 +39,7 @@ pipeline {
                             echo "SSH Key Path: ${sshKeyPath}"
                             bat """
                             winscp.com /command ^
-                              "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\"${sshKeyPath}\\" -hostkey=\\"ssh-ed25519 255 3O5NmtIQi8vcqZqSCSAtHeWbIOMl+EfVTcfLZagXWtg\\"" ^
+                              "open sftp://ec2-user@${params.tomcat_dev}/ -privatekey=\\"${sshKeyPath}\\"" ^
                               "put ${warFilePath} /var/lib/tomcat9/webapps/" ^
                               "exit"
                             """
@@ -54,7 +54,7 @@ pipeline {
                             def sshKeyPath = '/c/Users/wangx/tomcat/tomcat-demo.pem'
                             bat """
                             winscp.com /command ^
-                              "open sftp://ec2-user@${params.tomcat_prod}/ -privatekey=\\"${sshKeyPath}\\" -hostkey=\\"ssh-ed25519 255 kuAQCFV4U3CiqezFwRnXvPNO+nj8NPY5mRHbelq+gbo\\"" ^
+                              "open sftp://ec2-user@${params.tomcat_prod}/ -privatekey=\\"${sshKeyPath}\\"" ^
                               "put ${warFilePath} /var/lib/tomcat9/webapps/" ^
                               "exit"
                             """
@@ -65,4 +65,3 @@ pipeline {
         }
     }
 }
- 
