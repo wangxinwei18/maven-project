@@ -4,24 +4,13 @@ pipeline {
     tools {
         maven 'local maven'
     }
-    stages{
-        stage('Build'){
-                steps {
-                    bat 'mvn clean package'
-                }
-                post {
-                    success {
-                        echo 'Now Archiving...'
-                        archiveArtifacts artifacts: '**/target/*.war'
-                    }
-                }
-        }  
-     parameters {
-       string(name: 'tomcat_dev', defaultValue: '54.237.229.123', description: 'Staging Server')
-       string(name: 'tomcat_prod', defaultValue: '54.234.74.185', description: 'Production Server')
-     }
 
-     stage{
+    parameters {
+        string(name: 'tomcat_dev', defaultValue: '54.237.229.123', description: 'Staging Server')
+        string(name: 'tomcat_prod', defaultValue: '54.234.74.185', description: 'Production Server')
+    }
+
+    stages {
         stage('Build') {
             steps {
                 // Maven clean and package command
@@ -81,5 +70,5 @@ pipeline {
                 }
             }
         }
-    }  
+    }
 }
